@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore NASA Earth observation layers: land temperature, ocean temperature, active fires and sea ice.">
+<meta name="theme-color" content="#080d1d"><title>SoundSphere | NASA Earth Maps</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="maps.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+</head>
+<body class="maps-page">
+<header class="maps-header">
+ <a class="brand" href="index.html"><span class="brand-mark">◉</span><span>SOUND <span>SPHERE</span></span></a>
+ <nav><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a><a href="lab.html" data-en="Sound Lab" data-ar="المختبر الصوتي">Sound Lab</a><a class="active" href="maps.html" data-en="Earth Maps" data-ar="خرائط الأرض">Earth Maps</a></nav>
+ <div class="maps-actions"><button id="mapLanguage" class="language-toggle" type="button">العربية</button></div>
+</header>
+<main class="maps-main">
+ <section class="maps-intro">
+  <p class="eyebrow">SOUNDSPHERE / NASA EARTH OBSERVATIONS</p>
+  <h1 data-en="Explore the living <em>Earth.</em>" data-ar="استكشف <em>كوكب الأرض.</em>">Explore the living <em>Earth.</em></h1>
+  <p data-en="Switch between NASA satellite layers and explore how our planet changes. These are scientific visualizations, not decorative heat effects." data-ar="تنقّل بين طبقات الأقمار الصناعية التابعة لناسا واستكشف تغيّر كوكبنا. هذه تصوّرات علمية للبيانات وليست تأثيرات حرارية للزينة.">Switch between NASA satellite layers and explore how our planet changes. These are scientific visualizations, not decorative heat effects.</p>
+ </section>
+ <section class="map-shell" aria-label="NASA interactive map">
+  <div class="map-toolbar">
+   <label><span data-en="NASA data layer" data-ar="طبقة بيانات NASA">NASA data layer</span>
+    <select id="layerSelect">
+     <option value="landTemp" data-en="Land surface temperature · MODIS Terra" data-ar="حرارة سطح اليابسة · MODIS Terra">Land surface temperature · MODIS Terra</option>
+     <option value="fires" data-en="Active fire detections · MODIS Terra + Aqua" data-ar="رصد الحرائق النشطة · MODIS Terra + Aqua">Active fire detections · MODIS Terra + Aqua</option>
+     <option value="oceanTemp" data-en="Sea surface temperature · GHRSST MUR" data-ar="حرارة سطح المحيط · GHRSST MUR">Sea surface temperature · GHRSST MUR</option>
+     <option value="seaIce" data-en="Sea ice · MODIS Terra" data-ar="الجليد البحري · MODIS Terra">Sea ice · MODIS Terra</option>
+    </select>
+   </label>
+   <label><span data-en="Observation date" data-ar="تاريخ الرصد">Observation date</span><input id="mapDate" type="date" value="2026-11-13" max="2026-11-14"></label>
+   <button id="applyLayer" class="primary map-apply" data-en="Update map" data-ar="تحديث الخريطة">Update map</button>
+  </div>
+  <div id="nasaMap" role="application" aria-label="Interactive NASA Earth map"></div>
+  <div class="map-foot"><span id="mapStatus" data-en="Loading NASA imagery…" data-ar="جارٍ تحميل صور NASA…">Loading NASA imagery…</span><span data-en="Imagery © NASA EOSDIS GIBS" data-ar="الصور © NASA EOSDIS GIBS">Imagery © NASA EOSDIS GIBS</span></div>
+ </section>
+ <section class="map-info-grid">
+  <article class="map-info"><span class="info-kicker">01 / LAND</span><h2 data-en="Land heat map" data-ar="الخريطة الحرارية لليابسة">Land heat map</h2><p data-en="Daytime land-surface temperature observations from the MODIS instrument aboard NASA’s Terra satellite. Clouds and missing observations may leave gaps." data-ar="رصد درجات حرارة سطح اليابسة نهارًا بواسطة جهاز MODIS على القمر الصناعي Terra التابع لناسا. قد تظهر فجوات بسبب السحب أو غياب الرصد.">Daytime land-surface temperature observations from the MODIS instrument aboard NASA’s Terra satellite. Clouds and missing observations may leave gaps.</p></article>
+  <article class="map-info"><span class="info-kicker">02 / FIRE</span><h2 data-en="Wildfire activity" data-ar="نشاط حرائق الغابات">Wildfire activity</h2><p data-en="Thermal-anomaly detections from NASA’s MODIS instruments. A detection indicates a possible active fire or other hot source; it is not a burned-area boundary." data-ar="رصد الشذوذات الحرارية بواسطة أجهزة MODIS التابعة لناسا. تشير النقطة إلى حريق محتمل أو مصدر حرارة آخر، ولا تمثّل حدود المساحة المحترقة.">Thermal-anomaly detections from NASA’s MODIS instruments. A detection indicates a possible active fire or other hot source; it is not a burned-area boundary.</p></article>
+  <article class="map-info"><span class="info-kicker">03 / OCEAN</span><h2 data-en="Ocean temperature" data-ar="حرارة المحيطات">Ocean temperature</h2><p data-en="Daily sea-surface temperature analysis from the GHRSST MUR product distributed through NASA GIBS / JPL PO.DAAC." data-ar="تحليل يومي لدرجة حرارة سطح البحر من منتج GHRSST MUR الموزّع عبر NASA GIBS وJPL PO.DAAC.">Daily sea-surface temperature analysis from the GHRSST MUR product distributed through NASA GIBS / JPL PO.DAAC.</p></article>
+  <article class="map-info"><span class="info-kicker">04 / ICE</span><h2 data-en="Sea ice" data-ar="الجليد البحري">Sea ice</h2><p data-en="Sea-ice observations from MODIS Terra. This visualization is not the NSIDC Sea Ice Index and does not use NOAA data." data-ar="رصد الجليد البحري من MODIS Terra. هذا التصوّر ليس مؤشر NSIDC للجليد البحري ولا يستخدم بيانات NOAA.">Sea-ice observations from MODIS Terra. This visualization is not the NSIDC Sea Ice Index and does not use NOAA data.</p></article>
+ </section>
+ <section class="wind-note"><div><span class="info-kicker">05 / WIND DATASET</span><h2 data-en="Ocean winds · NASA PO.DAAC" data-ar="رياح المحيط · NASA PO.DAAC">Ocean winds · NASA PO.DAAC</h2><p data-en="NASA’s ASCAT ocean-surface wind-vector dataset is available from PO.DAAC. It is listed as a verified NASA data source, but is not presented as a GIBS map layer in this version." data-ar="تتوفر بيانات متجهات رياح سطح المحيط من جهاز ASCAT عبر PO.DAAC التابع لناسا. أُدرجت كمصدر بيانات موثّق، لكنها ليست طبقة خرائط GIBS في هذه النسخة.">NASA’s ASCAT ocean-surface wind-vector dataset is available from PO.DAAC. It is listed as a verified NASA data source, but is not presented as a GIBS map layer in this version.</p><a href="https://podaac.jpl.nasa.gov/dataset/ASCATB-L2-Coastal" target="_blank" rel="noopener" data-en="Open NASA wind dataset ↗" data-ar="فتح مجموعة بيانات الرياح من NASA ↗">Open NASA wind dataset ↗</a></div></section>
+ <footer class="maps-footer"><p data-en="Data imagery: NASA Global Imagery Browse Services (GIBS), part of NASA Earthdata / ESDIS." data-ar="مصدر صور البيانات: خدمات NASA Global Imagery Browse Services (GIBS)، التابعة لـ NASA Earthdata / ESDIS.">Data imagery: NASA Global Imagery Browse Services (GIBS), part of NASA Earthdata / ESDIS.</p><p data-en="NASA imagery requires an internet connection. The SoundSphere temperature sonification experience remains available locally from the project files." data-ar="تحتاج صور NASA إلى اتصال بالإنترنت. وتبقى تجربة تحويل بيانات الحرارة إلى صوت متاحة محليًا من ملفات المشروع.">NASA imagery requires an internet connection. The SoundSphere temperature sonification experience remains available locally from the project files.</p><a href="https://nasa-gibs.github.io/gibs-api-docs/available-visualizations/" target="_blank" rel="noopener">NASA GIBS layer catalogue ↗</a></footer>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="maps.js"></script>
+</body></html>

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Sound Sphere | افهم الأرض بالصوت</title>
+
+  <meta
+    name="description"
+    content="رحلة صوتية موجهة لفهم تغير حرارة الأرض: تعلم معنى النغمات، استكشف بيانات ناسا، واختبر فهمك."
+  >
+
+  <link rel="stylesheet" href="style.css?v=quiet-listen-3">
+</head>
+
+<body>
+  <a class="skip" href="#main">تخطّ إلى المحتوى</a>
+
+  <header>
+    <a
+      class="brand"
+      href="#home"
+      aria-label="Sound Sphere، الصفحة الرئيسية"
+    >
+      <span class="brand-mark" aria-hidden="true">◉</span>
+      <span dir="ltr">SOUND <span>SPHERE</span></span>
+    </a>
+
+    <nav aria-label="التنقل الرئيسي">
+      <button id="homeNav" aria-current="page">الرئيسية</button>
+      <button id="tryNav">جرّب</button>
+      <a href="#sources" id="howItWorksLink">كيف يعمل</a>
+      <a href="maps.html" id="earthMapsLink">Earth Maps</a>
+    </nav>
+
+    <div class="access">
+      <button id="languageToggle" class="language-toggle" type="button" aria-label="Switch language">English</button>
+      <button
+        id="fullscreenButton"
+        class="fullscreen-button"
+        aria-label="تبديل ملء الشاشة"
+        aria-pressed="false"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+          ></path>
+        </svg>
+        <span>ملء الشاشة</span>
+      </button>
+
+      <button
+        id="stopAll"
+        class="stop"
+        aria-label="إيقاف جميع الأصوات والشرح"
+      >
+        ■ <span>إيقاف الصوت</span>
+      </button>
+
+      <button id="accessButton" aria-label="فتح خيارات الوصول">
+        الوصول
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" aria-labelledby="heroTitle">
+      <div class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" dir="ltr">
+            A DIFFERENT WAY TO KNOW OUR PLANET
+          </p>
+
+          <h1 id="heroTitle">
+            اسمع كيف تغيّرت<br>
+            <em>حرارة الأرض.</em>
+          </h1>
+
+          <p class="hero-description">
+            قارن حرارة الأرض بين فترتين زمنيتين: فترة أقدم وفترة أحدث.
+            استمع إلى الفرق، وشاهد تمثيله، ثم تعرّف على معناه.
+          </p>
+
+          <div class="hero-actions">
+            <button id="start" class="primary">
+              ابدأ الاستكشاف
+            </button>
+
+            <button id="preview" class="secondary">
+              اسمع التعليمات أولًا
+            </button>
+          </div>
+
+          <p class="reassurance">
+            لا تحتاج إلى معرفة شيء عن المناخ أو الموسيقى؛
+            سنرشدك خطوة بخطوة.
+          </p>
+
+          <p class="audio-note">
+            الصوت يبدأ باختيارك. يُفضَّل البدء بمستوى منخفض.
+          </p>
+
+          <p
+            id="previewCaption"
+            class="preview-caption"
+            aria-live="off"
+          ></p>
+        </div>
+
+        <div class="hero-visual" id="homeGlobeContainer">
+          <div class="planet-orbit" aria-hidden="true"></div>
+          <div class="planet-orbit second" aria-hidden="true"></div>
+
+          <div
+            id="globe"
+            role="img"
+            aria-label="كرة أرضية سياقية، وليست خريطة بيانات حرارية"
+          >
+            <div class="globe-fallback"></div>
+          </div>
+
+          <div class="planet-caption">
+            <i></i>
+            <span dir="ltr">
+              ONE PLANET. MORE WAYS TO UNDERSTAND.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-intro">
+        <p>
+          رحلة واحدة.<br>
+          <b>ثلاث خطوات للفهم.</b>
+        </p>
+
+        <button class="journey-card" data-start="lesson">
+          <span>01</span>
+          <h2>نبدأ بسنتين واضحتين</h2>
+          <p>1880 أولًا، ثم 2025. شغّل كل صوت على حدة.</p>
+        </button>
+
+        <button class="journey-card" data-start="explore">
+          <span>02</span>
+          <h2>استكشف التغيّر</h2>
+          <p>اختر سنة، واعرف كيف تغيّرت حرارة الأرض.</p>
+        </button>
+
+        <button class="journey-card" data-start="quiz">
+          <span>03</span>
+          <h2>جرّب فهمك</h2>
+          <p>اسمع صوتين واختر أي سنة كانت أدفأ.</p>
+        </button>
+      </div>
+    </section>
+
+    <section
+      id="experience"
+      hidden
+      aria-labelledby="experienceTitle"
+    >
+      <div class="experience-header">
+        <p class="eyebrow" id="stepCount">
+          رحلتك الصوتية / الخطوة 1 من 3
+        </p>
+
+        <h1 id="experienceTitle" tabindex="-1">
+          تعرّف على معنى النغمات
+        </h1>
+
+        <p id="experienceSubtitle">
+          لا تحتاج إلى تخمين الصوت. ابدأ بالمفتاح، ثم استكشف.
+        </p>
+      </div>
+
+      <nav class="steps" aria-label="مراحل الرحلة">
+        <button data-step="lesson" aria-current="step">
+          <span>1</span> تعلّم
+        </button>
+
+        <button data-step="explore">
+          <span>2</span> استكشف
+        </button>
+
+        <button data-step="quiz">
+          <span>3</span> جرّب فهمك
+        </button>
+      </nav>
+
+      <div class="sensory-workspace">
+        <section
+          id="climateStage"
+          class="climate-stage"
+          aria-label="الكرة الأرضية والتمثيل الصوتي"
+        >
+          <div class="stage-heading">
+            <span>حرارة الأرض · متوسط عالمي</span>
+            <strong id="stagePeriod">اختر فترة للاستماع</strong>
+          </div>
+
+          <div class="stage-world">
+            <div
+              id="heatHalo"
+              class="heat-halo"
+              aria-hidden="true"
+            ></div>
+
+            <div id="globeDock"></div>
+            <div class="stage-orbit" aria-hidden="true"></div>
+          </div>
+
+          <div class="heat-legend">
+            <span>أقل حرارة</span>
+            <span class="legend-gradient"></span>
+            <span>أعلى حرارة</span>
+          </div>
+
+          <p class="stage-note">
+            لون الهالة يعبّر عن المتوسط العالمي؛
+            وليس خريطة لحرارة الدول.
+          </p>
+
+          <div id="stageGuideSlot">
+            <aside
+              class="sound-guide"
+              aria-label="حالة التجربة والشرح المكتوب"
+            >
+              <div class="sound-top">
+                <span class="sound-dot" id="soundDot"></span>
+                <span id="audioState">جاهز للاستماع</span>
+
+                <button id="replayNarration">
+                  اسمع تفسير الصوت
+                </button>
+              </div>
+
+              <p id="caption" aria-live="off">
+                شغّل كل نغمة على حدة.
+                الصوت الأغلظ يمثّل حرارة أقل،
+                والأرفع يمثّل حرارة أعلى.
+              </p>
+
+              <canvas
+                id="wave"
+                height="45"
+                role="img"
+                aria-label="شكل الموجة الصوتية أثناء تشغيل النغمة"
+              ></canvas>
+            </aside>
+          </div>
+        </section>
+
+        <div class="sensory-content">
+          <div id="lessonPanel" class="step-panel">
+            <div class="story-intro">
+              <p class="eyebrow">
+                فترتان زمنيتان · مثال من كل فترة
+              </p>
+
+              <h2>استمع، ثم قارن.</h2>
+
+              <p>
+                نبدأ بسنة 1880، ثم نقارنها بسنة 2025.
+                الصوت الأغلظ يمثّل حرارة أقل،
+                والأرفع يمثّل حرارة أعلى.
+              </p>
+
+              <p class="muted">
+                كل نغمة تستمر 8 ثوانٍ.
+                التفسير الصوتي اختياري.
+              </p>
+
+              <button id="guidedLesson" class="text-button">
+                اسمع التعليمات
+              </button>
+            </div>
+
+            <div class="story-years">
+              <article class="story-year" id="oldYearCard">
+                <p class="eyebrow">
+                  أولًا / قبل أكثر من مئة سنة
+                </p>
+
+                <strong dir="ltr">1880</strong>
+                <h3>نغمة أغلظ · حرارة أقل من 2025</h3>
+
+                <div class="listening-actions">
+                  <button
+                    id="hearOld"
+                    class="primary"
+                    aria-label="شغّل صوت 1880"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m9 5 10 7-10 7z"></path>
+                    </svg>
+                    شغّل صوت 1880
+                  </button>
+
+                  <button
+                    id="oldToneOnly"
+                    class="secondary"
+                    aria-label="اسمع تفسير صوت سنة 1880"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M11 5 6 9H3v6h3l5 4z"></path>
+                      <path
+                        d="M15 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      ></path>
+                    </svg>
+                    اسمع تفسير الصوت
+                  </button>
+                </div>
+
+                <p id="oldHeard" class="heard-message" hidden>
+                  تم الاستماع · يمكنك إعادة الصوت
+                </p>
+              </article>
+
+              <article class="story-year" id="newYearCard">
+                <p class="eyebrow">
+                  ثانيًا / بعد سنوات كثيرة
+                </p>
+
+                <strong dir="ltr">2025</strong>
+                <h3>نغمة أرفع · حرارة أعلى من 1880</h3>
+
+                <div class="listening-actions">
+                  <button
+                    id="hearNew"
+                    class="primary"
+                    aria-label="شغّل صوت 2025"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="m9 5 10 7-10 7z"></path>
+                    </svg>
+                    شغّل صوت 2025
+                  </button>
+
+                  <button
+                    id="newToneOnly"
+                    class="secondary"
+                    aria-label="اسمع تفسير صوت سنة 2025"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M11 5 6 9H3v6h3l5 4z"></path>
+                      <path
+                        d="M15 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.7"
+                      ></path>
+                    </svg>
+                    اسمع تفسير الصوت
+                  </button>
+                </div>
+
+                <p id="newHeard" class="heard-message" hidden>
+                  تم الاستماع · يمكنك إعادة الصوت
+                </p>
+              </article>
+            </div>
+
+            <div id="nextStoryYear" class="story-next" hidden>
+              <p>
+                استمعت إلى سنة 1880.
+                هل أنت مستعد للانتقال إلى سنة 2025؟
+              </p>
+
+              <button id="continueStory" class="primary">
+                تابع إلى السنة التالية ←
+              </button>
+            </div>
+
+            <div id="storyChoice" class="story-next" hidden>
+              <p>استمعت إلى السنتين.</p>
+
+              <div>
+                <button id="repeatPair" class="secondary" hidden>
+                  ↶ أعد الصوتين
+                </button>
+
+                <button id="tryStoryQuestion" class="primary">
+                  جرّب سؤالًا بسيطًا ←
+                </button>
+              </div>
+            </div>
+
+            <div id="storyQuestion" class="story-question" hidden>
+              <h2>أيّ السنتين كانت أدفأ؟</h2>
+              <p>الأولى، سنة 1880، أم الثانية، سنة 2025؟</p>
+
+              <div class="answers">
+                <button id="storyAnswerOld">الأولى / 1880</button>
+                <button id="storyAnswerNew">الثانية / 2025</button>
+              </div>
+
+              <div id="storyFeedback" class="feedback" hidden>
+                <h3 id="storyFeedbackTitle"></h3>
+                <p id="storyFeedbackText"></p>
+              </div>
+            </div>
+
+            <div id="storyHelp" class="story-help" hidden>
+              <button id="simplerExplanation" class="text-button">
+                ◉ هل تحتاج إلى شرح أبسط؟
+              </button>
+
+              <p class="small muted">
+                قد تحتاج إلى الاستماع أكثر من مرة.
+                أعد المثال، أو تابع مع الشرح المسموع.
+              </p>
+            </div>
+
+            <div id="storyContinue" class="step-bottom">
+              <p>اختر سنة أخرى، أو جرّب المقارنة.</p>
+
+              <button id="toExplore" class="primary">
+                استكشف سنوات أخرى ←
+              </button>
+            </div>
+          </div>
+
+          <div id="explorePanel" class="step-panel" hidden>
+            <div class="explore-grid">
+              <div class="data-view">
+                <div class="data-top">
+                  <p>السنة المختارة</p>
+
+                  <output id="year" aria-live="off" dir="ltr">
+                    2025
+                  </output>
+                </div>
+
+                <p class="compared-to">
+                  كيف كانت حرارة الأرض مقارنة بسنة 1880؟
+                </p>
+
+                <p class="plain-result" id="plainResult">أدفأ</p>
+
+                <p class="metric-explain" id="valueMeaning">
+                  كانت الأرض أدفأ مقارنة بسنة 1880.
+                </p>
+
+                <details class="science-values">
+                  <summary>اعرض الأرقام العلمية</summary>
+
+                  <div class="anomaly">
+                    <output id="value" aria-live="off" dir="ltr">
+                      +1.18
+                    </output>
+
+                    <span>°C انحراف عن متوسط 1951–1980</span>
+                  </div>
+
+                  <p class="small muted">
+                    الأرقام تقارن كل سنة بمتوسط الفترة 1951–1980.
+                    كلمة «أدفأ» أو «أبرد» أعلاه تقارن السنة المختارة
+                    بسنة 1880. المقارنتان مختلفتان.
+                  </p>
+                </details>
+
+                <svg
+                  id="chart"
+                  viewBox="0 0 600 170"
+                  preserveAspectRatio="none"
+                  role="img"
+                  aria-label="رسم يوضح أن حرارة الأرض ارتفعت بشكل عام من 1880 إلى 2025، مع اختلاف بين سنة وأخرى"
+                >
+                  <path
+                    id="chartLine"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.3"
+                  ></path>
+
+                  <line
+                    id="zeroLine"
+                    x1="8"
+                    x2="592"
+                    stroke="#65727d"
+                    stroke-dasharray="4 5"
+                  ></line>
+
+                  <circle
+                    id="chartDot"
+                    r="5"
+                    fill="#c7f0e8"
+                  ></circle>
+                </svg>
+
+                <div class="year-labels">
+                  <span>1880</span>
+                  <span>2025</span>
+                </div>
+
+                <label class="visually-hidden" for="yearSlider">
+                  السنة المختارة، استخدم الأسهم لتغيير السنة
+                </label>
+
+                <input
+                  id="yearSlider"
+                  type="range"
+                  min="0"
+                  max="145"
+                  value="145"
+                >
+
+                <div class="year-buttons">
+                  <button id="previousYear">
+                    → السنة السابقة
+                  </button>
+
+                  <div class="listening-actions">
+                    <button
+                      id="describeYear"
+                      aria-label="شغّل صوت السنة"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="m9 5 10 7-10 7z"></path>
+                      </svg>
+                      شغّل صوت السنة
+                    </button>
+
+                    <button
+                      id="yearToneOnly"
+                      class="secondary"
+                      aria-label="اسمع تفسير الصوت"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M11 5 6 9H3v6h3l5 4z"></path>
+                        <path
+                          d="M15 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.7"
+                        ></path>
+                      </svg>
+                      اسمع تفسير الصوت
+                    </button>
+                  </div>
+
+                  <button id="nextYear">
+                    السنة التالية ←
+                  </button>
+                </div>
+              </div>
+
+              <aside class="nasa-view" hidden>
+                <img
+                  src="assets/spiral.jpg"
+                  alt="رسم من NASA يبيّن تغيّر حرارة الأرض عبر السنوات بخطوط ملوّنة"
+                >
+
+                <p class="image-credit">
+                  NASA Scientific Visualization Studio
+                </p>
+
+                <h2>وراء النغمة، بيانات حقيقية.</h2>
+
+                <p>
+                  نستخدم قياسات سنوية من NASA لمعرفة كيف تغيّرت الحرارة.
+                  هذه الصورة توضيحية، ولا تتغيّر عندما تختار سنة أخرى.
+                </p>
+
+                <a href="lab.html">
+                  جرّب تحويل إطار NASA إلى صوت في المختبر المتقدم ↗
+                </a>
+              </aside>
+            </div>
+
+            <div class="explore-controls">
+              <button id="play" class="primary">
+                شغّل تسلسل السنوات
+              </button>
+
+              <label hidden>
+                طريقة الاستماع
+                <select id="listeningMode">
+                  <option value="guided">مع شرح لكل سنة</option>
+                  <option value="continuous">
+                    الأصوات متتابعة، دون شرح
+                  </option>
+                </select>
+              </label>
+
+              <button id="compareReference" class="secondary">
+                قارن بسنة 1880
+              </button>
+
+              <button id="explainSound" class="secondary" hidden>
+                اشرح ما أسمعه
+              </button>
+            </div>
+
+            <div class="step-bottom">
+              <p>
+                تستطيع الإيقاف في أي وقت،
+                ثم طلب وصف السنة الحالية.
+              </p>
+
+              <button id="toQuiz" class="primary">
+                جرّب ما فهمته ←
+              </button>
+            </div>
+          </div>
+
+          <div id="quizPanel" class="step-panel" hidden>
+            <div id="quizBody">
+              <div class="quiz-heading">
+                <p id="questionNumber" class="eyebrow">
+                  السؤال 1 من 3
+                </p>
+
+                <h2>أي سنة كانت أدفأ؟</h2>
+
+                <p>
+                  اسمع الصوت الأول، ثم الثاني.
+                  اختر أي سنة كانت أدفأ،
+                  ويمكنك إعادة الاستماع قبل الإجابة.
+                </p>
+              </div>
+
+              <div class="periods">
+                <button id="sampleA" class="period">
+                  <span class="period-letter">1</span>
+                  <span>
+                    <b>الصوت الأول</b>
+                    <small>▶ استمع</small>
+                  </span>
+                  <span class="heard" hidden>✓</span>
+                </button>
+
+                <button id="sampleB" class="period">
+                  <span class="period-letter">2</span>
+                  <span>
+                    <b>الصوت الثاني</b>
+                    <small>▶ استمع</small>
+                  </span>
+                  <span class="heard" hidden>✓</span>
+                </button>
+              </div>
+
+              <p id="answerHint">
+                استمع إلى الصوتين أولًا، ثم اختر.
+              </p>
+
+              <div class="answers">
+                <button id="answerA" disabled>
+                  السنة الأولى كانت أدفأ
+                </button>
+
+                <button id="answerB" disabled>
+                  السنة الثانية كانت أدفأ
+                </button>
+              </div>
+
+              <div id="feedback" class="feedback" hidden>
+                <h3 id="feedbackTitle"></h3>
+                <p id="feedbackDetail"></p>
+
+                <button id="replayExplanation" class="text-button">
+                  ◉ اسمع تفسير الإجابة
+                </button>
+              </div>
+
+              <div class="quiz-help">
+                <button id="quizHelp" class="text-button">
+                  ◉ اشرح لي كيف أختار
+                </button>
+
+                <button id="skipQuiz" class="text-button">
+                  أفضل أتابع الاستكشاف ←
+                </button>
+              </div>
+
+              <div class="step-bottom">
+                <p>
+                  يمكنك إعادة الإرشادات أو متابعة الاستكشاف.
+                  لا تحتاج إلى خلفية علمية للإجابة.
+                </p>
+
+                <button id="nextQuestion" class="primary" hidden>
+                  السؤال التالي ←
+                </button>
+              </div>
+            </div>
+
+            <div id="quizSummary" class="quiz-summary" hidden>
+              <span class="summary-icon">✓</span>
+              <p class="eyebrow">أكملت التدريب</p>
+              <h2>استمعت. قارنت. وفسّرت.</h2>
+              <p id="scoreText"></p>
+
+              <p>
+                النتيجة تخص هذه المحاولة فقط.
+                نحتاج إلى اختبار الأداة مع مكفوفين وضعاف بصر
+                لتقييم سهولة الفهم والاستخدام.
+              </p>
+
+              <div>
+                <button id="restartQuiz" class="primary">
+                  أعد التدريب
+                </button>
+
+                <button id="backExplore" class="secondary">
+                  عد إلى الاستكشاف
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p
+        id="status"
+        class="status"
+        role="status"
+        aria-live="polite"
+      ></p>
+    </section>
+
+    <section class="sources" id="sources">
+      <div>
+        <p class="eyebrow" dir="ltr">UNDERSTAND THE SOUND</p>
+
+        <h2>
+          كل نغمة لها معنى.<br>
+          <span>وكل معنى له مصدر.</span>
+        </h2>
+
+        <p>
+          الصوت وسيلة لفهم البيانات،
+          وليس صوتًا طبيعيًا صادرًا عن الأرض.
+        </p>
+      </div>
+
+      <div class="source-details">
+        <details>
+          <summary>كيف نربط الحرارة بالصوت؟</summary>
+
+          <p>
+            ترتفع حدّة النغمة مع الانحراف الحراري.
+            نستخدم مجالًا ثابتًا من −0.5 إلى +1.5 درجة،
+            وترددًا بين 130.81 و523.25 هرتز، بعلاقة لوغاريتمية.
+            تُقص القيم خارج هذا المجال.
+            نستخدم علاقة التحويل نفسها في الحكاية والاستكشاف والتدريب.
+            المقارنة التعليمية بين 1880 و2025 تعتمد على بيانات
+            السنتين الفعلية.
+          </p>
+
+          <p>
+            تدلّ حدّة النغمة على الحرارة.
+            أضفنا مكوّنات صوتية مساعدة ورفعًا محدودًا لقوة النغمات
+            المنخفضة لتكون أوضح على السماعات الصغيرة.
+            قوة الصوت ليست مقياسًا للحرارة،
+            ويمكن ضبطها من خيارات الوصول.
+          </p>
+        </details>
+
+        <details>
+          <summary>ما البيانات المستخدمة؟</summary>
+
+          <p>
+            المتوسط السنوي لانحراف حرارة سطح الأرض من GISTEMP v4
+            للأعوام 1880–2025.
+            المرجع متوسط الفترة 1951–1980.
+            هذه نسخة بيانات محمّلة، وليست بثًا بيئيًا مباشرًا.
+          </p>
+
+          <a
+            href="https://data.giss.nasa.gov/gistemp/"
+            target="_blank"
+            rel="noopener"
+          >
+            NASA GISS — GISTEMP v4 ↗
+          </a>
+
+          <a href="assets/gistemp.csv" download>
+            تنزيل ملف NASA الأصلي CSV ↓
+          </a>
+
+          <a
+            href="https://svs.gsfc.nasa.gov/5190/"
+            target="_blank"
+            rel="noopener"
+          >
+            إطار دوامة المناخ / NASA SVS ↗
+          </a>
+        </details>
+
+        <details>
+          <summary>كيف أستخدم الموقع دون رؤية الشاشة؟</summary>
+
+          <p>
+            ابدأ بزر «ابدأ الاستكشاف» لسماع تعليمات واحدة.
+            بعد ذلك لا تعمل الراوية إلا عند طلب التفسير أو التعليمات.
+            استخدم Tab للتنقل وEnter لتشغيل كل نغمة،
+            والأسهم لاختيار السنة.
+            لا يؤدي اختيار السنة وحده إلى تشغيل الصوت.
+            الإيقاف متاح أعلى الصفحة.
+          </p>
+
+          <p>
+            من خيارات الوصول يمكنك إيقاف الراوي المدمج
+            والاكتفاء بقارئ الشاشة، وزيادة التباين، وتقليل الحركة.
+            الاختبار مع مستخدمين مكفوفين وضعاف بصر لم يكتمل بعد.
+          </p>
+        </details>
+
+        <details>
+          <summary>عن المشروع وحدود التجربة</summary>
+
+          <p>
+            نموذج مستقل مستوحى من تحدّي
+            The Earth Information Jukebox في NASA Space Apps.
+            لا يصدر الموقع عن NASA ولا يمثّل اعتمادًا منها.
+            الكرة الأرضية سياقية، وليست خريطة قياسات.
+          </p>
+
+          <p>
+            التركيز الحالي هو تغيّر الحرارة.
+            الصور والبيانات قد تختلف في التغطية الزمنية.
+            تحويل الصورة إلى صوت متاح كتجربة فنية منفصلة
+            في المختبر، ولا يسترجع درجات حرارة رقمية من الألوان.
+          </p>
+
+          <a
+            href="https://www.spaceappschallenge.org/2026/challenges/the-earth-information-jukebox/"
+            target="_blank"
+            rel="noopener"
+          >
+            نص التحدّي ↗
+          </a>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span dir="ltr">SOUND SPHERE</span>
+    <span>استمع. استكشف. افهم.</span>
+    <a href="lab.html">المختبر المتقدم ↗</a>
+  </footer>
+
+  <dialog id="accessDialog" aria-labelledby="accessTitle">
+    <button
+      id="closeAccess"
+      class="dialog-close"
+      aria-label="إغلاق خيارات الوصول"
+    >
+      ×
+    </button>
+
+    <h2 id="accessTitle">اضبط تجربتك</h2>
+
+    <label class="setting">
+      <span>
+        الراوية العربية
+        <small>أوقفه إذا كنت تفضّل قارئ الشاشة الخاص بك.</small>
+      </span>
+
+      <input type="checkbox" id="narrationEnabled" checked>
+    </label>
+
+    <label class="setting narration-speed">
+      <span>
+        سرعة الراوية
+        <small>تؤثر في الشرح فقط، ولا تغيّر صوت البيانات.</small>
+      </span>
+
+      <select id="narrationSpeed" aria-label="سرعة الراوية">
+        <option value="1">عادية — 1×</option>
+        <option value="1.25" selected>أسرع قليلًا — 1.25×</option>
+        <option value="1.5">سريعة — 1.5×</option>
+      </select>
+    </label>
+
+    <label class="setting">
+      <span>تباين عالٍ</span>
+      <input type="checkbox" id="contrast">
+    </label>
+
+    <label class="setting">
+      <span>تقليل الحركة</span>
+      <input type="checkbox" id="motion">
+    </label>
+
+    <label class="volume-label" for="volume">
+      مستوى الصوت
+    </label>
+
+    <input
+      id="volume"
+      type="range"
+      min="0"
+      max="0.3"
+      value="0.12"
+      step="0.01"
+      aria-label="مستوى صوت النغمات والراوي"
+    >
+
+    <p class="small muted">
+      لا يعمل أي صوت تلقائيًا عند فتح الموقع.
+    </p>
+  </dialog>
+
+  <audio id="narrator" preload="none"></audio>
+
+  <script src="assets/three.offline.js"></script>
+  <script src="app.js?v=quiet-listen-3"></script>
+  <script src="language.js"></script>
+</body>
+</html>
